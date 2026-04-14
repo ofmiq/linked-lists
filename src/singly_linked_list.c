@@ -1,0 +1,93 @@
+#include "singly_linked_list.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+static double create_random_double_number(int min, int max) {
+  double range = (max - min);
+  double div = RAND_MAX / range;
+  return min + (rand() / div);
+}
+
+static singly_node* create_singly_node(double val) {
+  singly_node* node = (singly_node*)malloc(sizeof(singly_node));
+  if (!node) {
+    return NULL;
+  }
+  node->val = val;
+  node->next = NULL;
+  return node;
+}
+
+singly_linked_list* sll_create_empty(void) {
+  singly_linked_list* list =
+      (singly_linked_list*)malloc(sizeof(singly_linked_list));
+  if (!list) {
+    return NULL;
+  }
+
+  list->begin = NULL;
+  list->current = NULL;
+
+  return list;
+}
+
+singly_linked_list* sll_create_random(size_t size) {
+  singly_linked_list* list = sll_create_empty();
+  if (!list) {
+    return NULL;
+  }
+
+  singly_node* tail = NULL;
+
+  srand(time(NULL));
+
+  for (size_t i = 0; i < size; ++i) {
+    singly_node* node =
+        create_singly_node(create_random_double_number(-10, 10));
+
+    if (!node) {
+      sll_destroy(list);
+      return NULL;
+    }
+
+    if (!tail) {
+      list->begin = list->current = node;
+    } else {
+      tail->next = node;
+    }
+    tail = node;
+  }
+
+  return list;
+}
+
+void sll_destroy(singly_linked_list* list) {
+  if (!list) {
+    return;
+  }
+
+  singly_node* it = list->begin;
+  while (it) {
+    singly_node* next = it->next;
+    free(it);
+    it = next;
+  }
+
+  free(list);
+}
+
+void sll_print(singly_linked_list* list) {
+  if (!list) {
+    return;
+  }
+
+  singly_node* it = list->begin;
+  while (it) {
+    printf("%lf ", it->val);
+    it = it->next;
+  }
+
+  printf("\n");
+}
