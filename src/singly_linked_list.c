@@ -20,7 +20,8 @@ static singly_node* create_singly_node(double val) {
   return node;
 }
 
-static singly_node* predecessor(singly_linked_list* list, singly_node* target) {
+static singly_node* find_predecessor(singly_linked_list* list,
+                                     singly_node* target) {
   if (!list || !target) {
     return NULL;
   }
@@ -32,7 +33,7 @@ static singly_node* predecessor(singly_linked_list* list, singly_node* target) {
     }
     it = it->next;
   }
-  
+
   return NULL;
 }
 
@@ -122,6 +123,54 @@ char sll_curr_step_left(singly_linked_list* list) {
     return SLL_ERROR;
   }
 
-  list->current = predecessor(list, list->current);
+  list->current = find_predecessor(list, list->current);
   return list->current ? SLL_OK : SLL_ERROR;
+}
+
+singly_node* sll_insert_right(singly_linked_list* list, double val) {
+  if (!list) {
+    return NULL;
+  }
+
+  singly_node* new_node = create_singly_node(val);
+  if (!new_node) {
+    return NULL;
+  }
+
+  if (!list->begin) {
+    list->begin = list->current = new_node;
+    return new_node;
+  }
+
+  new_node->next = list->current->next;
+  list->current->next = new_node;
+
+  return new_node;
+}
+
+singly_node* sll_insert_left(singly_linked_list* list, double val) {
+  if (!list) {
+    return NULL;
+  }
+
+  singly_node* new_node = create_singly_node(val);
+  if (!new_node) {
+    return NULL;
+  }
+
+  if (!list->begin) {
+    list->begin = list->current = new_node;
+    return NULL;
+  }
+
+  singly_node* predecessor = find_predecessor(list, list->current);
+  new_node->next = list->current;
+
+  if (predecessor) {
+    predecessor->next = new_node;
+  } else {
+    list->begin = new_node;
+  }
+
+  return new_node;
 }

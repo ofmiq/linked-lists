@@ -63,20 +63,20 @@ char sll_curr_step_right(singly_linked_list* list);
 char sll_curr_step_left(singly_linked_list* list);
 
 /**
- * @brief Inserts a new element to the left of the cursor
- * @param list Pointer to the list
- * @param val The value to be inserted
- * @return Pointer to the newly inserted node
- */
-singly_node* sll_insert_left(singly_linked_list* list, double val);
-
-/**
  * @brief Inserts a new element to the right of the cursor
  * @param list Pointer to the list
  * @param val The value to be inserted
  * @return Pointer to the newly inserted node
  */
 singly_node* sll_insert_right(singly_linked_list* list, double val);
+
+/**
+ * @brief Inserts a new element to the left of the cursor
+ * @param list Pointer to the list
+ * @param val The value to be inserted
+ * @return Pointer to the newly inserted node
+ */
+singly_node* sll_insert_left(singly_linked_list* list, double val);
 
 /**
  * @brief Deletes the node at the current cursor position

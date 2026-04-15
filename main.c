@@ -59,8 +59,33 @@ void test_steps() {
   return;
 }
 
+void test_insert() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  sll_insert_left(random_sll, -1);
+  printf("list was updated, elements: ");
+  sll_print(random_sll);
+
+  random_sll->current = sll_insert_right(random_sll, 10);
+  printf("list was updated, elements: ");
+  sll_print(random_sll);
+
+  sll_insert_left(random_sll, 5);
+  printf("list was updated, elements: ");
+  sll_print(random_sll);
+
+  sll_destroy(random_sll);
+}
+
 int main() {
   // test_create();
-  test_steps();
+  // test_steps();
+  test_insert();
   return 0;
 }
