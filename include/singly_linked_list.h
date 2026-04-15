@@ -3,6 +3,9 @@
 
 #include <stddef.h>
 
+#define SLL_ERROR ((char)-1)
+#define SLL_OK ((char)0)
+
 /**
  * @brief Structure representing a node in a singly linked list
  */

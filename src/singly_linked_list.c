@@ -20,6 +20,22 @@ static singly_node* create_singly_node(double val) {
   return node;
 }
 
+static singly_node* predecessor(singly_linked_list* list, singly_node* target) {
+  if (!list || !target) {
+    return NULL;
+  }
+
+  singly_node* it = list->begin;
+  while (it) {
+    if (it->next == target) {
+      return it;
+    }
+    it = it->next;
+  }
+  
+  return NULL;
+}
+
 singly_linked_list* sll_create_empty(void) {
   singly_linked_list* list =
       (singly_linked_list*)malloc(sizeof(singly_linked_list));
@@ -90,4 +106,22 @@ void sll_print(singly_linked_list* list) {
   }
 
   printf("\n");
+}
+
+char sll_curr_step_right(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current) {
+    return SLL_ERROR;
+  }
+
+  list->current = list->current->next;
+  return SLL_OK;
+}
+
+char sll_curr_step_left(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current) {
+    return SLL_ERROR;
+  }
+
+  list->current = predecessor(list, list->current);
+  return list->current ? SLL_OK : SLL_ERROR;
 }
