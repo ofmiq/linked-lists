@@ -1,7 +1,8 @@
-#include "singly_linked_list.h"
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
+
+#include "singly_linked_list.h"
 
 void test_create() {
   singly_linked_list* empty_sll = sll_create_empty();
@@ -23,7 +24,7 @@ void test_create() {
   sll_destroy(random_sll);
 
   printf("3. lists were destroyed successfully\n");
-  
+
   return;
 }
 
@@ -31,27 +32,30 @@ void test_steps() {
   singly_linked_list* random_sll = sll_create_random(10);
   if (!random_sll) {
     return;
-  } 
+  }
 
   printf("list was created\nElements:");
   sll_print(random_sll);
 
   printf("current val: %lf\n", random_sll->current->val);
-  
-  if (sll_curr_step_right(random_sll) == SLL_OK) { 
-    printf("cursor was moved one element right, val: %lf\n", random_sll->current->val);
+
+  if (sll_curr_step_right(random_sll) == SLL_OK) {
+    printf("cursor was moved one element right, val: %lf\n",
+           random_sll->current->val);
   } else {
     printf("error: cursor was'nt moved\n");
   }
 
   if (sll_curr_step_left(random_sll) == SLL_OK) {
-    printf("cursor was moved one element left, val: %lf\n", random_sll->current->val);
+    printf("cursor was moved one element left, val: %lf\n",
+           random_sll->current->val);
   } else {
     printf("error: cursor was'nt moved\n");
   }
 
   if (sll_curr_step_left(random_sll) == SLL_OK) {
-    printf("cursor was moved one element left, val: %lf\n", random_sll->current->val);
+    printf("cursor was moved one element left, val: %lf\n",
+           random_sll->current->val);
   } else {
     printf("error: cursor was'nt moved\n");
   }
@@ -85,10 +89,27 @@ void test_insert() {
   sll_destroy(random_sll);
 }
 
+void test_delete() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  sll_delete(random_sll);
+  printf("element was deleted, elements: ");
+  sll_print(random_sll);
+
+  sll_destroy(random_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
   test_steps();
   test_insert();
+  test_delete();
   return 0;
 }

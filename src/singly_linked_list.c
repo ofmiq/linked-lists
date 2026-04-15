@@ -153,7 +153,7 @@ singly_node* sll_insert_right(singly_linked_list* list, double val) {
 }
 
 singly_node* sll_insert_left(singly_linked_list* list, double val) {
-  if (!list || !list->current) {
+  if (!list) {
     return NULL;
   }
 
@@ -182,4 +182,28 @@ singly_node* sll_insert_left(singly_linked_list* list, double val) {
   }
 
   return new_node;
+}
+
+char sll_delete(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current) {
+    return SLL_ERROR;
+  }
+
+  singly_node* to_delete = list->current;
+  singly_node* predecessor = find_predecessor(list, to_delete);
+
+  if (to_delete->next) {
+    list->current = to_delete->next;
+  } else {
+    list->current = predecessor;
+  }
+
+  if (predecessor) {
+    predecessor->next = to_delete->next;
+  } else {
+    list->begin = to_delete->next;
+  }
+
+  free(to_delete);
+  return SLL_OK;
 }
