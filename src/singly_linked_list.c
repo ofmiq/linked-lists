@@ -4,9 +4,11 @@
 #include <stdlib.h>
 
 static double create_random_double_number(int min, int max) {
-  double range = (max - min);
-  double div = RAND_MAX / range;
-  return min + (rand() / div);
+  if (min >= max) {
+    return (double)min;
+  }
+  double range = (double)(max - min);
+  return min + (rand() / (RAND_MAX / range));
 }
 
 static singly_node* create_singly_node(double val) {
