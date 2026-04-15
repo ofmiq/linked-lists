@@ -1,5 +1,7 @@
 #include "singly_linked_list.h"
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
 void test_create() {
   singly_linked_list* empty_sll = sll_create_empty();
@@ -84,8 +86,9 @@ void test_insert() {
 }
 
 int main() {
-  // test_create();
-  // test_steps();
+  srand(time(NULL));
+  test_create();
+  test_steps();
   test_insert();
   return 0;
 }

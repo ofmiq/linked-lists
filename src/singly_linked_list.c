@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 static double create_random_double_number(int min, int max) {
   double range = (max - min);
@@ -58,8 +57,6 @@ singly_linked_list* sll_create_random(size_t size) {
 
   singly_node* tail = NULL;
 
-  srand(time(NULL));
-
   for (size_t i = 0; i < size; ++i) {
     singly_node* node =
         create_singly_node(create_random_double_number(-10, 10));
@@ -102,7 +99,7 @@ void sll_print(singly_linked_list* list) {
 
   singly_node* it = list->begin;
   while (it) {
-    printf("%lf ", it->val);
+    printf("%f ", it->val);
     it = it->next;
   }
 
@@ -110,7 +107,7 @@ void sll_print(singly_linked_list* list) {
 }
 
 char sll_curr_step_right(singly_linked_list* list) {
-  if (!list || !list->begin || !list->current) {
+  if (!list || !list->begin || !list->current || !list->current->next) {
     return SLL_ERROR;
   }
 
@@ -142,6 +139,11 @@ singly_node* sll_insert_right(singly_linked_list* list, double val) {
     return new_node;
   }
 
+  if (!list->current) {
+    free(new_node);
+    return NULL;
+  }
+
   new_node->next = list->current->next;
   list->current->next = new_node;
 
@@ -149,7 +151,7 @@ singly_node* sll_insert_right(singly_linked_list* list, double val) {
 }
 
 singly_node* sll_insert_left(singly_linked_list* list, double val) {
-  if (!list) {
+  if (!list || !list->current) {
     return NULL;
   }
 
@@ -160,6 +162,11 @@ singly_node* sll_insert_left(singly_linked_list* list, double val) {
 
   if (!list->begin) {
     list->begin = list->current = new_node;
+    return new_node;
+  }
+
+  if (!list->current) {
+    free(new_node);
     return NULL;
   }
 
