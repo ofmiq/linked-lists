@@ -279,3 +279,26 @@ singly_linked_list* sll_create_copy(singly_linked_list* list) {
 
   return copy;
 }
+
+void sll_concatenate(singly_linked_list* a, singly_linked_list* b) {
+  if (!b->begin) {
+    free(b);
+    return;
+  }
+
+  if (!a->begin) {
+    a->begin = b->begin;
+    a->current = b->current;
+    free(b);
+    return;
+  }
+
+  singly_node* tail = a->begin;
+  while (tail->next) {
+    tail = tail->next;
+  }
+
+  tail->next = b->begin;
+
+  free(b);
+}

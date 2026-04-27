@@ -169,6 +169,31 @@ void test_copy() {
   sll_destroy(copy_sll);
 }
 
+void test_concatenate() {
+  singly_linked_list* list_a = sll_create_random(5);
+  if (!list_a) {
+    return;
+  }
+
+  singly_linked_list* list_b = sll_create_random(5);
+  if (!list_b) {
+    return;
+  }
+
+  printf("lists were created\n");
+  printf("elements of list_a: ");
+  sll_print(list_a);
+  printf("elements of list_b: ");
+  sll_print(list_b);
+
+  sll_concatenate(list_a, list_b);
+
+  printf("lists were concatenated\nelements: ");
+  sll_print(list_a);
+
+  sll_destroy(list_a);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
@@ -177,5 +202,6 @@ int main() {
   test_delete();
   test_swaps();
   test_copy();
+  test_concatenate();
   return 0;
 }

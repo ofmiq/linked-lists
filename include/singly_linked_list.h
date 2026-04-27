@@ -102,10 +102,18 @@ char sll_swap_cursor_left(singly_linked_list* list);
 char sll_swap_cursor_right(singly_linked_list* list);
 
 /**
- * @brief Create a copy of a given singly linked list
+ * @brief Creates a copy of a given singly linked list
  * @param list Pointer to the list will be copied
  * @return Pointer to the copy of a given list 
  */
 singly_linked_list* sll_create_copy(singly_linked_list* list);
+
+/**
+ * @brief Concatenates list b to list a from the right
+ * @param a Pointer to the first list
+ * @param b Pointer to the second list
+ * @note List b is destroyed by this operation, list a is extended
+ */
+void sll_concatenate(singly_linked_list* a, singly_linked_list* b);
 
 #endif
