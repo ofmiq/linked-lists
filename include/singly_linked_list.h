@@ -87,4 +87,18 @@ singly_node* sll_insert_left(singly_linked_list* list, double val);
  */
 char sll_delete(singly_linked_list* list);
 
+/**
+ * @brief Swaps the cursor node with its left neighbor
+ * @param list Pointer to the list
+ * @return Status code (SLL_OK or error code)
+ */
+char sll_swap_cursor_left(singly_linked_list* list);
+
+/**
+ * @brief Swaps the cursor node with its right neighbor
+ * @param list Pointer to the list
+ * @return Status code (SLL_OK or error code)
+ */
+char sll_swap_cursor_right(singly_linked_list* list);
+
 #endif

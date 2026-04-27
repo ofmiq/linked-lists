@@ -105,11 +105,52 @@ void test_delete() {
   sll_destroy(random_sll);
 }
 
+void test_swaps() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  if (sll_swap_cursor_left(random_sll) == SLL_OK) {
+    printf("left swap was processed\nelements: ");
+    sll_print(random_sll);
+  } else {
+    printf("error: swap was'nt processed (expected)\n");
+  }
+
+  sll_curr_step_right(random_sll);
+  sll_curr_step_right(random_sll);
+
+  sll_swap_cursor_left(random_sll);
+  printf("left swap was processed\nelements: ");
+  sll_print(random_sll);
+
+  sll_swap_cursor_right(random_sll);
+  printf("right swap was processed\nelements: ");
+  sll_print(random_sll);
+
+  sll_curr_step_right(random_sll);
+  sll_curr_step_right(random_sll);
+
+  if (sll_swap_cursor_right(random_sll) == SLL_OK) {
+    printf("left swap was processed\nelements: ");
+    sll_print(random_sll);
+  } else {
+    printf("error: swap was'nt processed (expected)\n");
+  }
+
+  sll_destroy(random_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
   test_steps();
   test_insert();
   test_delete();
+  test_swaps();
   return 0;
 }

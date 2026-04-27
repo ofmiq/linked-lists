@@ -207,3 +207,32 @@ char sll_delete(singly_linked_list* list) {
   free(to_delete);
   return SLL_OK;
 }
+
+char sll_swap_cursor_left(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current) {
+    return SLL_ERROR;
+  }
+  if (list->current == list->begin) {
+    return SLL_ERROR;
+  }
+
+  singly_node* predecessor = find_predecessor(list, list->current);
+
+  double tmp = predecessor->val;
+  predecessor->val = list->current->val;
+  list->current->val = tmp;
+
+  return SLL_OK;
+}
+
+char sll_swap_cursor_right(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current || !list->current->next) {
+    return SLL_ERROR;
+  }
+
+  double tmp = list->current->next->val;
+  list->current->next->val = list->current->val;
+  list->current->val = tmp;
+  
+  return SLL_OK;
+}
