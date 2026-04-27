@@ -145,6 +145,30 @@ void test_swaps() {
   sll_destroy(random_sll);
 }
 
+void test_copy() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+  printf("address of original list: %p\n", (void*)random_sll);
+
+  singly_linked_list* copy_sll = sll_create_copy(random_sll);
+  if (!copy_sll) {
+    sll_destroy(random_sll);
+    return;
+  }
+
+  printf("copy was created\nelements: ");
+  sll_print(copy_sll);
+  printf("address of copy list: %p\n", (void*)copy_sll);
+
+  sll_destroy(random_sll);
+  sll_destroy(copy_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
@@ -152,5 +176,6 @@ int main() {
   test_insert();
   test_delete();
   test_swaps();
+  test_copy();
   return 0;
 }

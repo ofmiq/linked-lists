@@ -101,4 +101,11 @@ char sll_swap_cursor_left(singly_linked_list* list);
  */
 char sll_swap_cursor_right(singly_linked_list* list);
 
+/**
+ * @brief Create a copy of a given singly linked list
+ * @param list Pointer to the list will be copied
+ * @return Pointer to the copy of a given list 
+ */
+singly_linked_list* sll_create_copy(singly_linked_list* list);
+
 #endif

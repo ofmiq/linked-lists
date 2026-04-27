@@ -241,3 +241,41 @@ char sll_swap_cursor_right(singly_linked_list* list) {
 
   return SLL_OK;
 }
+
+singly_linked_list* sll_create_copy(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current) {
+    return NULL;
+  }
+
+  singly_linked_list* copy = sll_create_empty();
+  if (!copy) {
+    return NULL;
+  }
+
+  singly_node* tail = NULL;
+
+  singly_node* it = list->begin;
+  while (it) {
+    singly_node* node = create_singly_node(it->val);
+
+    if (!node) {
+      sll_destroy(copy);
+      return NULL;
+    }
+
+    if (!tail) {
+      copy->begin = node;
+    } else {
+      tail->next = node;
+    }
+    tail = node;
+
+    if (it == list->current) {
+      copy->current = node;
+    }
+
+    it = it->next;
+  }
+
+  return copy;
+}
