@@ -8,7 +8,7 @@ static double create_random_double_number(int min, int max) {
     return (double)min;
   }
   double range = (double)(max - min);
-  return min + (rand() / (RAND_MAX / range));
+  return min + ((double)rand() / RAND_MAX) * range;
 }
 
 static singly_node* create_singly_node(double val) {
@@ -172,7 +172,10 @@ singly_node* sll_insert_left(singly_linked_list* list, double val) {
     return NULL;
   }
 
-  singly_node* predecessor = find_predecessor(list, list->current);
+  singly_node* predecessor = (list->current == list->begin)
+                                 ? NULL
+                                 : find_predecessor(list, list->current);
+
   new_node->next = list->current;
 
   if (predecessor) {
@@ -190,7 +193,9 @@ char sll_delete(singly_linked_list* list) {
   }
 
   singly_node* to_delete = list->current;
-  singly_node* predecessor = find_predecessor(list, to_delete);
+  singly_node* predecessor = (list->current == list->begin)
+                                 ? NULL
+                                 : find_predecessor(list, list->current);
 
   if (to_delete->next) {
     list->current = to_delete->next;
@@ -233,6 +238,6 @@ char sll_swap_cursor_right(singly_linked_list* list) {
   double tmp = list->current->next->val;
   list->current->next->val = list->current->val;
   list->current->val = tmp;
-  
+
   return SLL_OK;
 }
