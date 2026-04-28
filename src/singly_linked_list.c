@@ -302,3 +302,23 @@ void sll_concatenate(singly_linked_list* a, singly_linked_list* b) {
 
   free(b);
 }
+
+singly_linked_list* sll_divide(singly_linked_list* list) {
+  if (!list || !list->begin || !list->current) {
+    return NULL;
+  }
+
+  if (!list->current->next) {
+    return NULL;
+  }
+
+  singly_linked_list* new_list = sll_create_empty();
+  if (!new_list) {
+    return NULL;
+  }
+
+  new_list->begin = new_list->current = list->current->next;
+  list->current->next = NULL;
+
+  return new_list;
+}

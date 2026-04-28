@@ -194,6 +194,36 @@ void test_concatenate() {
   sll_destroy(list_a);
 }
 
+void test_divide() {
+  singly_linked_list* random_sll = sll_create_random(10);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  sll_curr_step_right(random_sll);
+  sll_curr_step_right(random_sll);
+  sll_curr_step_right(random_sll);
+  sll_curr_step_right(random_sll);
+
+  singly_linked_list* new_sll = sll_divide(random_sll);
+  if (!new_sll) {
+    sll_destroy(random_sll);
+    return;
+  }
+
+  printf("list was divided\n");
+  printf("left side: ");
+  sll_print(random_sll);
+  printf("right side: ");
+  sll_print(new_sll);
+
+  sll_destroy(random_sll);
+  sll_destroy(new_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
@@ -203,5 +233,6 @@ int main() {
   test_swaps();
   test_copy();
   test_concatenate();
+  test_divide();
   return 0;
 }

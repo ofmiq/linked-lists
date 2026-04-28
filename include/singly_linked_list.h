@@ -116,4 +116,12 @@ singly_linked_list* sll_create_copy(singly_linked_list* list);
  */
 void sll_concatenate(singly_linked_list* a, singly_linked_list* b);
 
+/**
+ * @brief Divide a given singly linked list into two
+ * @param list Pointer to the list will be splitted
+ * @return Pointer to the new list created by dividing
+ * @note List will be divide to the right of cursor 
+ */
+singly_linked_list* sll_divide(singly_linked_list* list);
+
 #endif
