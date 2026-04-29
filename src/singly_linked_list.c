@@ -338,3 +338,22 @@ size_t sll_get_size(singly_linked_list* list) {
 
   return size;
 }
+
+void sll_inversion(singly_linked_list* list) {
+  if (!list || !list->begin) {
+    return;
+  }
+
+  singly_node* prev = NULL;
+  singly_node* curr = list->begin;
+  singly_node* next = NULL;
+
+  while (curr) {
+    next = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = next;
+  }
+
+  list->begin = prev;
+}

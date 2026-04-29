@@ -131,4 +131,10 @@ singly_linked_list* sll_divide(singly_linked_list* list);
  */
 size_t sll_get_size(singly_linked_list* list);
 
+/**
+ * @brief Inverts a given singly linked list
+ * @param list Pointer to the linked list
+ */
+void sll_inversion(singly_linked_list* list);
+
 #endif

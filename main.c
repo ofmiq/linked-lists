@@ -244,6 +244,23 @@ void test_size() {
   sll_destroy(random_sll);
 }
 
+void test_invert() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  sll_inversion(random_sll);
+
+  printf("list was inverted\nelements: ");
+  sll_print(random_sll);
+
+  sll_destroy(random_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
@@ -255,5 +272,6 @@ int main() {
   test_concatenate();
   test_divide();
   test_size();
+  test_invert();
   return 0;
 }
