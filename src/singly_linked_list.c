@@ -322,3 +322,19 @@ singly_linked_list* sll_divide(singly_linked_list* list) {
 
   return new_list;
 }
+
+size_t sll_get_size(singly_linked_list* list) {
+  if (!list) {
+    return 0;
+  }
+
+  singly_node* it = list->begin;
+  size_t size = 0;
+
+  while (it) {
+    ++size;
+    it = it->next;
+  }
+
+  return size;
+}

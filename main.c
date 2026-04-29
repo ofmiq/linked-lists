@@ -224,6 +224,26 @@ void test_divide() {
   sll_destroy(new_sll);
 }
 
+void test_size() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  printf("size of list: %zu\n", sll_get_size(random_sll));
+
+  sll_delete(random_sll);
+  printf("element was deleted, size: %zu\n", sll_get_size(random_sll));
+
+  sll_insert_right(random_sll, 8.0);
+  printf("element was inserted, size: %zu\n", sll_get_size(random_sll));
+
+  sll_destroy(random_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
@@ -234,5 +254,6 @@ int main() {
   test_copy();
   test_concatenate();
   test_divide();
+  test_size();
   return 0;
 }

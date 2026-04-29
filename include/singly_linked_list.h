@@ -124,4 +124,11 @@ void sll_concatenate(singly_linked_list* a, singly_linked_list* b);
  */
 singly_linked_list* sll_divide(singly_linked_list* list);
 
+/**
+ * @brief Computes a size of a given singly linked list
+ * @param list Pointer to the list
+ * @return Length of a given singly linked list
+ */
+size_t sll_get_size(singly_linked_list* list);
+
 #endif
