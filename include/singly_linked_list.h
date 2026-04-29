@@ -104,7 +104,7 @@ char sll_swap_cursor_right(singly_linked_list* list);
 /**
  * @brief Creates a copy of a given singly linked list
  * @param list Pointer to the list will be copied
- * @return Pointer to the copy of a given list 
+ * @return Pointer to the copy of a given list
  */
 singly_linked_list* sll_create_copy(singly_linked_list* list);
 
@@ -120,7 +120,7 @@ void sll_concatenate(singly_linked_list* a, singly_linked_list* b);
  * @brief Divide a given singly linked list into two
  * @param list Pointer to the list will be splitted
  * @return Pointer to the new list created by dividing
- * @note List will be divide to the right of cursor 
+ * @note List will be divide to the right of cursor
  */
 singly_linked_list* sll_divide(singly_linked_list* list);
 
@@ -136,5 +136,13 @@ size_t sll_get_size(singly_linked_list* list);
  * @param list Pointer to the linked list
  */
 void sll_inversion(singly_linked_list* list);
+
+/**
+ * @brief Interpolates a given singly linked list
+ * @param list Pointer to the linked list
+ * @note Inserts the mean value between each of the two nodes
+ * @return Status code
+ */
+char sll_interpolate_linear(singly_linked_list* list);
 
 #endif

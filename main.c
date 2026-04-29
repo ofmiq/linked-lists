@@ -261,6 +261,23 @@ void test_invert() {
   sll_destroy(random_sll);
 }
 
+void test_interpolate() {
+  singly_linked_list* random_sll = sll_create_random(5);
+  if (!random_sll) {
+    return;
+  }
+
+  printf("list was created\nelements: ");
+  sll_print(random_sll);
+
+  sll_interpolate_linear(random_sll);
+
+  printf("list was interpolated\nelements: ");
+  sll_print(random_sll);
+
+  sll_destroy(random_sll);
+}
+
 int main() {
   srand(time(NULL));
   test_create();
@@ -273,5 +290,6 @@ int main() {
   test_divide();
   test_size();
   test_invert();
+  test_interpolate();
   return 0;
 }

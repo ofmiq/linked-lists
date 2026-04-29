@@ -38,6 +38,8 @@ static singly_node* find_predecessor(singly_linked_list* list,
   return NULL;
 }
 
+static double calculate_mean_value(double a, double b) { return (a + b) / 2.0; }
+
 singly_linked_list* sll_create_empty(void) {
   singly_linked_list* list =
       (singly_linked_list*)malloc(sizeof(singly_linked_list));
@@ -356,4 +358,25 @@ void sll_inversion(singly_linked_list* list) {
   }
 
   list->begin = prev;
+}
+
+char sll_interpolate_linear(singly_linked_list* list) {
+  if (!list || !list->begin) {
+    return SLL_ERROR;
+  }
+
+  singly_node* it = list->begin;
+
+  while (it && it->next) {
+    double mean_val = calculate_mean_value(it->val, it->next->val);
+    singly_node* new_node = create_singly_node(mean_val);
+    if (!new_node) {
+      return SLL_ERROR;
+    }
+    new_node->next = it->next;
+    it->next = new_node;
+    it = it->next->next;
+  }
+
+  return SLL_OK;
 }
